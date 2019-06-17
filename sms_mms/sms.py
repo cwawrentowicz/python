@@ -35,18 +35,14 @@ def extract_mmssms(cursor,filename):
     cursor.execute(sql)
     rows=cursor.fetchall()
     f=open( filename,'a')
-    #f.write("<table style='border: 1px solid #808080' >\n")
     f.write("<table>\n")
     f.write("<thead><tr><th>ID</th><th>TreĹ›Ä‡</th><th>Adres</th><th>Data</th><th>Data wysĹ‚ania</th><th>Typ</th></tr></thead>\n")
     f.write("<tbody>\n")
     for  r in rows:
         pic=""
-        #print(r[7])
         if len(r[1])==0 :
             pic= extract_picture(cursor, r[0],r[6], filename)
             print(r[1] + " " + pic)
-        #else:
-        #    pic= extract_picture(cursor, r[0],r[6], filename)
         f.write("<tr>\n")
         if r[5]==1:
             f.write("<td>" + r[0] + " " + str(r[6]) + "</td><td style='text-align: left; background-color: #EEEEEE;'>" + r[1] + "</td><td>" + str(r[2]) + "</td><td>" + str(r[3]) + "</td><td>" + str(r[4]) + "</td><td>" + str(r[5]) +  "</td><td>" + pic + "</td>\n")
